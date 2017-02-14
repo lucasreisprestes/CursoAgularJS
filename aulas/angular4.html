@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+    Diretivas - Lista em Angular
+    <div ng-controller="CtrlLista">
+        <ul>  <!--lista de repetição em li-->
+            <li ng-repeat="valor in pessoas">
+                <b>{{valor.nome}}</b>, {{valor.cidade}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var CtrlLista= function($scope){
+                 //array
+          $scope.pessoas = [
+              {nome: "Maria", cidade: "São Paulo"},
+              {nome: "Lucas", cidade: "São Martinho"},
+              {nome: "João", cidade: "Porto Alegre"}
+          ]
+
+
+        };
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+
+    Trabalhando com On - change
+      <div ng-controller="CtrlApp">
+          <input type="text" ng-model="nome" ng-change="loggar()"/>
+          <h1>{{nome}}, {{cidade}}, {{idade*10}}</h1>
+      </div>
+
+      <script>
+          var CtrlApp = function($scope) {
+            $scope.nome = "lucas";
+            $scope.cidade = "Barra do Ribeiro";
+            $scope.idade = 10;
+
+            <!-- Este cara esta vendo componente input -->
+            $scope.loggar = function(){
+              alert(123);
+            }
+            <!-- Este cara esta vendo o model, tanto que o model pode estar em diversos elementos -->
+            $scope.$watch('nome', function(){
+              console.log($scope.nome)
+            });
+          };
+      </script>
+
+
+  </body>
+</html>

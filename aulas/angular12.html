@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app='MeuModulo'>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+</head>
+<body>
+
+  <!--modulo 2.1 -->
+  <div ng-controller="CtrlModulo">
+    Este modulo é {{modulo}}
+  </div>
+
+<script>
+    <!-- '[$scope, function(s)' estou dizendo que o 's' é dependecia do $scope -->
+    angular.module('MeuModulo',[])
+           .controller('CtrlModulo', ['$scope', function(s){
+             s.modulo = "Lucasssss";
+           }]);
+
+</script>
+
+
+</body>
+</html>

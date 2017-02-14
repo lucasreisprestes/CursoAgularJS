@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+      Models e controllers
+      <!-- Definir do controller para o html -->
+      <div ng-controller="CtrlApp">
+          <h1>{{nome}}, {{cidade}}, {{idade*10}}</h1>
+          <input type="text" ng-model="nome"/>
+      </div>
+
+      <!-- Criando o controller -->
+      <script>
+          var CtrlApp = function($scope) {
+            $scope.nome = "lucas";
+            $scope.cidade = "Barra do Ribeiro";
+            $scope.idade = 10;
+            //O $ significa que é uma função do angular
+            //A função watch fica ouvindo uma modificação no input
+            $scope.$watch('nome', function(){
+              console.log($scope.nome)
+            });
+          };
+      </script>
+
+
+  </body>
+</html>

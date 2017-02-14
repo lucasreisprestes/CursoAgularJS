@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  </head>
+  <body>
+    Diretivas - ng-click<br />
+
+    <!-- este Model está fora para poder ser acessodo por outros controles -->
+    <!-- se utilizar ng-model="busca.nome" ele irá localizar somente no atributo nome-->
+    Buscar<input type="search" ng-model="busca">
+
+    <div ng-controller="CtrlLista">
+        <ul>  <!--lista de repetição em li-->
+            <li ng-repeat="valor in pessoas | filter:busca:comecarCom"><!-- Função remover recebe o $index do array-->
+                <b>{{valor.nome}}</b>, {{valor.cidade}}<button ng-click="remover($index)">Remover</button>
+            </li>
+        </ul>
+
+        <div>Total: <b>{{pessoas.length}}</b></div>
+        <!--Adicionando valores na lista -->
+        <div>
+            Nome <input type="text" ng-model="vNome">
+            <br/>
+            Cidade <input type="text" ng-model="vCidade">
+            <br/>
+            <button ng-click="adicionar()">Adicionar na lista</button>
+        </div>
+
+    </div>
+    <script>
+        var CtrlLista= function($scope){
+                 //array
+          $scope.pessoas = [
+              {nome: "Maria", cidade: "São Paulo"},
+              {nome: "Lucas", cidade: "São Martinho"},
+              {nome: "Douglas", cidade: "Guaiba"},
+              {nome: "João", cidade: "Porto Alegre"}
+          ];
+          //função adicionar incluindo valores dos campos no array
+          $scope.adicionar = function(){
+              $scope.pessoas.push({
+                nome:$scope.vNome,
+                cidade:$scope.vCidade
+              });
+
+            $scope.vNome = '';
+            $scope.vCidade = '';
+          };
+          $scope.remover = function(index){
+            $scope.pessoas.splice(index, 1);  <!-- splice pede o index inicial + a quantidade à frente -->
+          };
+
+          $scope.comecarCom = function (atual, esperado) {
+              var minusculoStr = (atual + "").toLowerCase(); //converte para minisculo o valor atual
+              return minisculoStr.indexOf(esperado.toLowerCase()) === 0;  //verificar se o valor esperado bate com o valor atual da coleção de dados
+          }
+
+        };
+    </script>
+
+  </body>
+</html>
