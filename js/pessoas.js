@@ -1,12 +1,15 @@
 /*pessoas.js*/
-
  angular
     //Como estamos importando o arquivo angular-route.min.js, então precisaremos também importar o módulo ngRoute
     .module('mdPessoas',['ngRoute'])
 
-    .config(function($routeProvider){  //Config corresponde a configuração de rotas do angular que utiliza $routeProvider
+    .config(['$routeProvider',function ($routeProvider){  //Config corresponde a configuração de rotas do angular que utiliza $routeProvider
+
+      //$locationProvider.hashPrefix("!");
+
       //when => quando o usuário usar a rota...
-      $routeProvider.when('/',
+      $routeProvider
+          .when('/',
           {              // passamos o objeto
               templateUrl: 'listar.html'
           })
@@ -14,9 +17,15 @@
           {
               templateUrl:'adicionar.html',
               controller: 'CtrlAdicionar' // preciso definir qual o controle irá utilizar
-          });
-          console.log('Feitooooooooooo');
-    })
+          })
+          // :index -> quem é a pessoa do array
+          .when('/pessoa/:index',
+          {
+              templateUrl:'editar.html',
+              controller:'Ctrleditar'
+          })
+
+    }])
 
     .controller('CtrlPessoas', function($scope){
 
@@ -26,6 +35,17 @@
             {nome: "João" ,  cidade:"Parnaiba"},
             {nome: "Cleber", cidade:"Paraná"}
         ];
+
+        console.log("Show");
+        $scope.remover = function (index){
+          $scope.pessoas.splice(index, 1);
+        }
+
+   })
+
+   .controller('Ctrleditar', function($scope,$routeParams){
+     //obj do formulário    // indice do array
+      $scope.pessoa     =   $scope.pessoas[$routeParams.index];
 
    })
 

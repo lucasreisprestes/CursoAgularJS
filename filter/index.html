@@ -1,21 +1,27 @@
 <!doctype html>
-<html ng-app="mdPessoas">
+<html ng-app="App">
 <head>
     <meta charset="utf-8"/>
-    <title>Pessoas</title>
+    <title></title>
 </head>
 <body>
 
-    <div ng-controller="CtrlPessoas">
+    <div ng-controller="CtrlApp">
 
-        <h1>Pessoas</h1>
-
-        <div ng-view></div>
+      <h1>{{frase}}</h1>
 
     </div>
 
 </body>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
-  <script src="js/pessoas.js"></script>
+  <script>
+
+        angular.module('APP',[])
+               .controller('CtrlApp', function($scope){
+                 $scope.frase = 'Meu nome é lucas';
+               })
+
+
+  </script>
 </html>

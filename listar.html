@@ -1,9 +1,10 @@
 
 <h2>Listagem de Pessoas</h2>
 <ul>
-  <li ng-repeat="valor in pessoas">
-      {{valor.nome}}, {{valor.cidade}}
+  <li ng-repeat="pessoa in pessoas">
+      <a href="#!pessoa/{{$index}}">{{pessoa.nome}},{{pessoa.cidade}}</a>
+      <input type="button" value="X" ng-click="remover(index)">
   </li>
 </ul>
 
-<a href="#/pessoa/adicionar">Adicionar nova pessoa</a>
+<a href="#!pessoa/adicionar">Adicionar nova pessoa</a>
