@@ -1,0 +1,59 @@
+<!--https://docs.angularjs.org/guide/directive-->
+<!doctype html>
+<html ng-app="App">
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-controller="CtrlApp">
+
+      <h1></h1>
+      <button son-Click="executa()">Clique - Atributo</button>
+      <son-Clic click="executa()">Clique - Elemento</son-Clic>
+    </div>
+
+  <script>
+
+        angular.module('App',[])
+               .directive('sonClick', function(){ // criando uma diretiva
+
+                 return {
+                    //restrict directive(A) de atributo (E) de elemento
+                    restrict: 'A',
+                    link: function(scope, element, attrs){ //ele ouve o click do button
+                        element.bind('click', function () {
+                           scope.$eval(attrs.sonClick); // attrs = executa(), $eval recebe e vai disparar
+                        })
+                      }
+                  };
+               })
+
+               .directive('sonClic', function(){ // criando uma diretiva
+
+                 return {
+                    //restrict directive(A) de atributo (E) de elemento
+                    restrict: 'E',
+                    replace: true,
+                    transclude: true,
+                    template: '<button ng-transclude></button>',
+                    link: function(scope, element, attrs){ //ele ouve o click do button
+                        element.bind('click', function () {
+                           scope.$eval(attrs.click); // attrs = executa(), $eval recebe e vai disparar
+                        })
+                      }
+                  };
+               })
+
+               .controller('CtrlApp', function($scope){
+                 $scope.executa = function(){
+                   alert('Diretiva clicada');
+                 }
+               });
+
+
+  </script>
+</body>
+</html>
